@@ -12,6 +12,8 @@ const student_information = new Schema({
     first_name : typeGen(Schema.Types.String),
     middle_name : typeGen(Schema.Types.String),
     last_name : typeGen(Schema.Types.String),
+    gender : typeGen(Schema.Types.String),
+    photo : typeGen(Schema.Types.String)
 });
 
-module.exports = mongoose.model('ClientVehicle', client_vehicle);
+module.exports = mongoose.model('StudentInformation', student_information);

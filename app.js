@@ -8,7 +8,7 @@ dbconn(function (err) {
     if (err)
         console.log(err);
     else
-        console.log('MongoDB successfully connected to: ', process.env.MONGOLAB_URI);
+        console.log('MongoDB successfully connected to: ', process.env.MONGODB_URI);
 });
 
 //create server
@@ -58,5 +58,5 @@ api.get('/', function (req, res) { res.send(200, { msg: 'Welcome to CINFODROID' 
 //Unauthenticated routes
 
 // login
-//require('./src/endpoints/Auth/routes');
+require('./src/endpoints/Student/routes');
 
