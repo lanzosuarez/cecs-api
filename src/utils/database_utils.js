@@ -17,7 +17,7 @@ onError = (err) => {
 
 //mongoDB connect
 dbconn = (callback) => {
-    var URI = process.env.MONGODB_URI;
+    var URI = process.env.MONGODB_URI_LOCAL;
     mongoose.connect(URI, { config: { autoIndex: false } }, function (err) {
         if (err) {
             callback(err);

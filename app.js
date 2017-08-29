@@ -55,8 +55,6 @@ module.exports.api = api;
 //Root route
 api.get('/', function (req, res) { res.send(200, { msg: 'Welcome to CINFODROID' }) });
 
-//Unauthenticated routes
-
-// login
-require('./src/endpoints/Student/routes');
+//Admin
+require('./src/endpoints/Admin/routes');
 
