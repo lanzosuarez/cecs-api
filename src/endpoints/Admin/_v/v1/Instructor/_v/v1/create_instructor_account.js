@@ -1,11 +1,11 @@
 const
-Student = require('../../../../models/instructor'),
-{ CODE_NOT_FOUND } = require('../../../../globals/globals'),
-{ hashPassword } = require('../../../../utils/security_utils'),
+Student = require('../../../../../../../models/instructor'),
+{ CODE_NOT_FOUND } = require('../../../../../../../globals/globals'),
+{ hashPassword } = require('../../../../../../../utils/security_utils'),
 {
     sendError,
     sendSuccess,
-} = require('../../../../utils/helper_utils');
+} = require('../../../../../../../utils/helper_utils');
 
 module.exports = (req, res, next) => {
 

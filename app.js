@@ -58,3 +58,5 @@ api.get('/', function (req, res) { res.send(200, { msg: 'Welcome to CINFODROID' 
 //Admin
 require('./src/endpoints/Admin/routes');
 
+//Auth
+require('./src/endpoints/Auth/routes');
