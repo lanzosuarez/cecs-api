@@ -1,26 +1,24 @@
 const
-    Student = require('../../../../models/students'),
-    Instructor = require('../../../../models/instructor'),
+    Admin = require('../../../../models/admin'),
     {
-    generateAppAccessToken,
-    comparePasswords
+        generateAppAccessToken,
+        comparePasswords
     } = require('../../../../utils/security_utils'),
     {
-    CODE_AUTH_ERROR,
-    MSG_CONFLICT_ERROR
-} = require('../../../../globals/globals'),
+        CODE_AUTH_ERROR,
+        MSG_CONFLICT_ERROR
+    } = require('../../../../globals/globals'),
     {
-    sendError,
-    sendSuccess,
-    sendResponse
-} = require('../../../../utils/helper_utils');
+        sendError,
+        sendSuccess,
+        sendResponse
+    } = require('../../../../utils/helper_utils');
 
 module.exports = (req, res, next) => {
 
-    const { username, password, flag } = req.body,
+    const { username, password } = req.body,
 
         comparePws = (storedPassword) => {
-            console.log("password");
             return comparePasswords(password, storedPassword).
                 then(data => {
                     return data;
@@ -42,18 +40,18 @@ module.exports = (req, res, next) => {
             const {
                 username,
                 _id,
-                first_name,
-                middle_name,
-                last_name,
+                firstname,
+                middlename,
+                lastname,
                 email
                 } = user;
 
             var payload = {
                 _id,
                 username,
-                first_name,
-                last_name,
-                middle_name,
+                firstname,
+                lastname,
+                middlename,
                 email
             };
 
@@ -63,23 +61,15 @@ module.exports = (req, res, next) => {
         //login
         login = () => {
             console.log(username, password);
-            if (flag === undefined || flag === null) {
-                return Instructor.findOne({ username: username }).
-                    then(user => {
-                        return user;
-                    }).catch(err => {
-                        throw err;
-                    });
 
-            } else {
-                return Student.findOne({ username: username }).
-                    then(user => {
-                        return user;
-                    }).catch(err => {
-                        throw err;
-                    });
-            }
+            return Admin.findOne({ username: username }).
+                then(user => {
+                    return user;
+                }).catch(err => {
+                    throw err;
+                });
         },
+
 
         authError = (res) => {
             sendResponse(

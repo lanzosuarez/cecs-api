@@ -45,7 +45,7 @@ function unknownMethodHandler(req, res) {
 
 api.on('MethodNotAllowed', unknownMethodHandler);
 
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 5000;
 api.listen(port, function () {
     console.log('Server started @ ' + port);
 });
@@ -55,8 +55,10 @@ module.exports.api = api;
 //Root route
 api.get('/', function (req, res) { res.send(200, { msg: 'Welcome to CINFODROID' }) });
 
+//Auth
+require('./src/endpoints/Auth/routes');
+
+
 //Admin
 require('./src/endpoints/Admin/routes');
 
-//Auth
-require('./src/endpoints/Auth/routes');
