@@ -40,12 +40,7 @@ const generateKeyPairs = (keys, values) => {
 };
 
 const updateEntity = (toUpdate, updater) => {
-    Object.keys(updater).
-        forEach(key => {
-            toUpdate[key] = updater[key];
-        });
-
-    return toUpdate;
+    return Object.assign(toUpdate, updater);
 };
 
 

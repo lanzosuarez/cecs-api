@@ -1,7 +1,5 @@
 const
-    Student = require('../../../../../models/student'),
-    { CODE_NOT_FOUND } = require('../../../../../globals/globals'),
-    { hashPassword } = require('../../../../../utils/security_utils'),
+    Student = require('../../../../../models/students'),
     {
         sendError,
         sendSuccess,
@@ -22,14 +20,12 @@ module.exports = (req, res, next) => {
                 }).catch(err => {
                     throw err;
                 });
-
         };
-
 
     async function main() {
         try {
             var student = createStudent(),
-                newStudent = await saveStudent(Student);
+                newStudent = await saveStudent(student);
 
             sendSuccess(
                 res,

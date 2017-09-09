@@ -11,7 +11,11 @@ const instructor_information = new Schema({
     middlename: typeGen(Schema.Types.String),
     lastname: typeGen(Schema.Types.String),
     gender: typeGen(Schema.Types.String),
-    email: typeGen(Schema.Types.String)
+    email: typeGen(Schema.Types.String),
+    classes: [{
+        year: typeGen(Schema.Types.String),
+        section: typeGen(Schema.Types.String)
+    }]
 });
 
-module.exports = mongoose.model('InstructorInformation', instructor_information);
+module.exports = mongoose.model('Instructor', instructor_information);
