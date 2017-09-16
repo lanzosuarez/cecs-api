@@ -12,9 +12,14 @@ const instructor_information = new Schema({
     lastname: typeGen(Schema.Types.String),
     gender: typeGen(Schema.Types.String),
     email: typeGen(Schema.Types.String),
-    classes: [{
+    schedules: [{
+        subject: typeGen(Schema.Types.String),
         year: typeGen(Schema.Types.String),
-        section: typeGen(Schema.Types.String)
+        section: typeGen(Schema.Types.String),
+        building: typeGen(Schema.Types.String),
+        day: typeGen(Schema.Types.String),
+        start: typeGen(Schema.Types.String),
+        end: typeGen(Schema.Types.String)
     }]
 });
 

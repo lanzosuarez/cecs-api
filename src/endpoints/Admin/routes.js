@@ -15,7 +15,13 @@ const
     //schedules
     add_schedule_v1 = require('./_v/v1/Student/add_schedule'),
     delete_schedule_v1 = require('./_v/v1/Student/delete_schedule'),
-    update_schedule_v1 = require('./_v/v1/Student/update_schedule');
+    update_schedule_v1 = require('./_v/v1/Student/update_schedule'),
+    bulk_add_schedule_v1 = require('./_v/v1/Student/bulk_add_schedule'),
+    bulk_del_schedule_v1 = require('./_v/v1/Student/bulk_del_schedule'),
+    bulk_get_schedules_v1 = require('./_v/v1/Student/bulk_get_schedules');
+
+const
+    get_classes_v1 = require('./_v/v1/Student/get_classes');
 
 api.use(validateAppToken);
 
@@ -57,8 +63,26 @@ api.del({ path: 'cecs/student_schedule/:student_id/:schedule_id' },
     delete_schedule_v1
 );
 
-
 api.patch({ path: 'cecs/student_schedule/:student_id/:schedule_id' },
     update_schedule_v1
+);
+
+api.get({ path: 'cecs/student_schedule/bulk/:year/:section/:college/:course' },
+    bulk_get_schedules_v1
+);
+
+api.post({ path: 'cecs/student_schedule/bulk/:year/:section/:college/:course' },
+    bulk_add_schedule_v1
+);
+
+api.patch({ path: 'cecs/student_schedule/bulk/:year/:section/:college/:course' },
+    bulk_del_schedule_v1
+);
+
+
+//classes
+
+api.get({ path: 'cecs/classes' },
+    get_classes_v1
 );
 
