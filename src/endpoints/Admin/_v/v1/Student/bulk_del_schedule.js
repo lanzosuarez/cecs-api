@@ -17,7 +17,9 @@ module.exports = (req, res, next) => {
             return Student.update(
                 {
                     year,
-                    section
+                    section,
+                    college,
+                    course
                 },
                 { $pull: 
                     { 

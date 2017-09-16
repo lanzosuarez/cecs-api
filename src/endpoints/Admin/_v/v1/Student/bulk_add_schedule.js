@@ -28,6 +28,9 @@ module.exports = (req, res, next) => {
                             $each: schedules
                         }
                     }
+                },
+                { 
+                    multi: true 
                 }
             )
                 .then(data => {

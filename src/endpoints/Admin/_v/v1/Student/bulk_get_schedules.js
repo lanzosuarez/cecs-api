@@ -35,9 +35,9 @@ module.exports = (req, res, next) => {
                     ""
                 );
             } else {
-                sendError(
+                sendSuccess(
                     res,
-                    "NOT FOUND",
+                    [],
                     ""
                 );
             }
