@@ -8,7 +8,7 @@ const
 module.exports = (req, res, next) => {
 
     const
-        { year, section } = req.params,
+        { year, section, college, course } = req.params,
         { subject } = req.body;
 
     const
