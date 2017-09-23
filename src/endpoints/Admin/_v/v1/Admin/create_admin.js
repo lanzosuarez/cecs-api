@@ -7,14 +7,18 @@ const
     } = require('../../../../../globals/globals'),
     {
         hashPassword,
-        decodeToken
+        decodeToken,
+        generateRandomPassword
     } = require('../../../../../utils/security_utils'),
     {
         sendError,
         sendSuccess,
         sendResponse,
         initialPassTemplate
-    } = require('../../../../../utils/helper_utils');
+    } = require('../../../../../utils/helper_utils'),
+    {
+        sendEmail
+    } = require('../../../../../utils/email_utils');
 
 module.exports = (req, res, next) => {
 
@@ -31,10 +35,24 @@ module.exports = (req, res, next) => {
                 });
         },
 
-
         createUser = () => {
+
+            const password = generateRandomPassword(6);
+            req.body.password = password;
+
             const newUser = new Admin(req.body);
             return newUser;
+        },
+
+        sendPassEmail = (user) => {
+            const { email, password, firstname } = req.body;
+
+            sendEmail(
+                COMPANY_EMAIL,
+                email,
+                "Admin Password",
+                initialPassTemplate(firstname, password)
+            );
         },
 
         saveUser = (user) => {
@@ -56,10 +74,12 @@ module.exports = (req, res, next) => {
         try {
             const
                 existing = await findUser();
-
+            console.log(existing);
             if (existing === null) {
                 const user = createUser(),
                     newUser = await saveUser(user);
+
+                await sendPassEmail();
 
                 sendSuccess(
                     res,

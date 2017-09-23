@@ -104,7 +104,6 @@ const forgotPassTemplate = (name, password) => {
     return `
         <h3> Hello ${name}, because you requested for a new passsord, this is your new password!</h3> 
         <p>${password}<p/> <br><br>
-        <b> Please login to https://kmc-visitors-login-cms.herokuapp.com and change you password</b>
     `;
 };
 
@@ -112,7 +111,6 @@ const initialPassTemplate = (name, password) => {
     return `
         <h3> Hello ${name}, this is your password: </h3> 
         <p>${password}<p/> <br><br>
-        <b> Please login to https://kmc-visitors-login-cms.herokuapp.com and change you password</b>
     `;
 };
 

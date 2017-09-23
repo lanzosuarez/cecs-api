@@ -81,11 +81,13 @@ module.exports = (req, res, next) => {
         };
 
     async function main() {
+        console.log(username, password);
         try {
             var user = await login();
             console.log(user);
             if (user !== null) {
                 var authenticate = await comparePws(user.password);
+                console.log(authenticate);
                 if (authenticate === true) {
                     var token = generateToken(user);
                     // payload = getPayload(user);

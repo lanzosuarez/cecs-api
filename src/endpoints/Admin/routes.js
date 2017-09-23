@@ -4,7 +4,10 @@ const { validateAppToken } = require('../../utils/security_utils');
 
 const
     create_admin_v1 = require('./_v/v1/Admin/create_admin'),
-    decode_admin_v1 = require('./_v/v1/Admin/decode_admin');
+    get_admin_v1 = require('./_v/v1/Admin/get_admin'),
+    decode_admin_v1 = require('./_v/v1/Admin/decode_admin'),
+    update_admin_v1 = require('./_v/v1/Admin/update_admin'),
+    forgot_password_v1 = require('./_v/v1/Admin/forgot_password');
 
 const
     create_student_v1 = require('./_v/v1/Student/create_student'),
@@ -20,15 +23,39 @@ const
     bulk_del_schedule_v1 = require('./_v/v1/Student/bulk_del_schedule'),
     bulk_get_schedules_v1 = require('./_v/v1/Student/bulk_get_schedules');
 
+
+
+const
+    create_instructor_v1 = require('./_v/v1/Instructor/create_instructor'),
+    get_instructors_v1 = require('./_v/v1/Instructor/get_instructors'),
+    update_instructor_v1 = require('./_v/v1/Instructor/update_instructor'),
+    delete_instructor_v1 = require('./_v/v1/Instructor/delete_instructor'),
+
+    //schedules
+    add_schedule_instructor_v1 = require('./_v/v1/Instructor/add_schedule'),
+    delete_schedule_instructor_v1 = require('./_v/v1/Instructor/delete_schedule'),
+    update_schedule_instructor_v1 = require('./_v/v1/Instructor/update_schedule');
+
 const
     get_classes_v1 = require('./_v/v1/Student/get_classes');
 
+api.patch({ path: 'cecs/forgot_password' },
+    forgot_password_v1
+);
+
 api.use(validateAppToken);
 
-
 ///admin
+
+api.get({ path: 'cecs/user' },
+    get_admin_v1
+);
 api.post({ path: 'cecs/user' },
     create_admin_v1
+);
+
+api.patch({ path: 'cecs/user' },
+    update_admin_v1
 );
 
 api.get({ path: 'cecs/decode_admin' },
@@ -86,3 +113,34 @@ api.get({ path: 'cecs/classes' },
     get_classes_v1
 );
 
+
+//instructor
+api.get({ path: 'cecs/instructor' },
+    get_instructors_v1
+);
+
+api.post({ path: 'cecs/instructor' },
+    create_instructor_v1
+);
+
+api.patch({ path: 'cecs/instructor/:_id' },
+    update_instructor_v1
+);
+
+api.del({ path: 'cecs/instructor/:_id' },
+    delete_instructor_v1
+);
+
+//student schedules
+
+api.post({ path: 'cecs/instructor_schedule/:instructor_id' },
+    add_schedule_instructor_v1
+);
+
+api.del({ path: 'cecs/instructor_schedule/:instructor_id/:schedule_id' },
+    delete_schedule_instructor_v1
+);
+
+api.patch({ path: 'cecs/instructor_schedule/:instructor_id/:schedule_id' },
+    update_schedule_instructor_v1
+);
