@@ -39,6 +39,16 @@ const
 const
     get_classes_v1 = require('./_v/v1/Student/get_classes');
 
+const
+    get_class_schedules = require('./_v/v1/Student/get_schedules');
+
+
+//bot api
+
+api.get({ path: 'cecs/bot/:class_year/:class_section/:class_course' },
+    get_class_schedules
+);
+
 api.patch({ path: 'cecs/forgot_password' },
     forgot_password_v1
 );
